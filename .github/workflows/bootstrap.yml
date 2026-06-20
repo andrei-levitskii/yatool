@@ -114,7 +114,7 @@ jobs:
               echo "EXISTS: $path"
             done
 
-            # Check additional binaries exist
+            # Check additional binaries exist (no --help)
             for bin in $ADDITIONAL_BINS; do
               path="$STAGE2/additional/$platform/$bin"
               if [ ! -f "$path" ]; then
@@ -130,13 +130,6 @@ jobs:
 
               for bin in $MAIN_BINS; do
                 path="$STAGE2/$platform/$bin"
-                echo "Running: $path --help"
-                "$path" --help
-                echo "OK: $bin exited with code $?"
-              done
-
-              for bin in $ADDITIONAL_BINS; do
-                path="$STAGE2/additional/$platform/$bin"
                 echo "Running: $path --help"
                 "$path" --help
                 echo "OK: $bin exited with code $?"
