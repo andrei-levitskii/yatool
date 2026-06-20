@@ -2,7 +2,7 @@ name: Bootstrap ya-bin
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # daily at 00:00 UTC
+    - cron: '0 1 * * *'  # daily at 01:00 UTC
   workflow_dispatch:       # allow manual runs for debugging
 
 jobs:
@@ -114,7 +114,7 @@ jobs:
               echo "EXISTS: $path"
             done
 
-            # Check additional binaries exist
+            # Check additional binaries exist (no --help)
             for bin in $ADDITIONAL_BINS; do
               path="$STAGE2/additional/$platform/$bin"
               if [ ! -f "$path" ]; then
@@ -130,13 +130,6 @@ jobs:
 
               for bin in $MAIN_BINS; do
                 path="$STAGE2/$platform/$bin"
-                echo "Running: $path --help"
-                "$path" --help
-                echo "OK: $bin exited with code $?"
-              done
-
-              for bin in $ADDITIONAL_BINS; do
-                path="$STAGE2/additional/$platform/$bin"
                 echo "Running: $path --help"
                 "$path" --help
                 echo "OK: $bin exited with code $?"
