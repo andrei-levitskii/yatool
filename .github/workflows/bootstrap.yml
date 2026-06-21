@@ -31,6 +31,7 @@ jobs:
       - name: Run bootstrap (stage 1 + stage 2)
         run: |
           echo "$PATH"
+          ls -ld /run/user/1000
           mkdir -p "$RESULT_ROOT"
           python3 devtools/ya/bootstrap/run_bootstrap.py \
             --source-root "$GITHUB_WORKSPACE" \
