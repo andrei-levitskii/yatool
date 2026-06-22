@@ -109,4 +109,10 @@ jobs:
 
           done < "$PLATFORM_LIST"
 
+      - name: Cleanup podman containers and images
+        if: always()
+        run: |
+          podman unmount --all
+          podman system prune -af --external
+
 
